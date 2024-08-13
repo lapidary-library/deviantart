@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "deviant"
+name = "lapidary-deviantart"
 version = "0.1.0"
 description = ""
 authors = ["Raphael Krupinski <rafalkrupinski@users.noreply.github.com>"]
