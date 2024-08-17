@@ -8,7 +8,7 @@ packages = [{include = "deviantart", from = "src"}]
 
 [tool.poetry.dependencies]
 python = "^3.11"
-lapidary = {path = "../lapidary/lapidary", develop = true}
+lapidary = "^0.11.0"
 
 
 [build-system]
