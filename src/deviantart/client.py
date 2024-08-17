@@ -1,9 +1,9 @@
 from typing import Annotated, Self
 from uuid import UUID
 
-from lapidary.runtime import Body, ClientBase, Query, Response, Responses, get
+from lapidary.runtime import Body, ClientBase, Path, Query, Response, Responses, get
 
-from .models.deviation import MetadataResponse, TagsResponse
+from .models.deviation import DeviationWithSessionResolved, MetadataResponse, TagsResponse
 from .models.error import ErrorModel
 from .models.placebo import PlaceboBody
 
@@ -54,6 +54,20 @@ class DeviantArt(ClientBase):
         Responses({
             '200': Response(Body({MEDIA_JSON: PlaceboBody})),
             **ERRORS
+        })
+    ]:
+        pass
+
+    @get('/deviation/{deviationId}')
+    async def get_deviation(
+        self: Self,
+        deviation_id: Annotated[UUID, Path('deviationId')],
+        with_session: Annotated[bool, Query] = False,
+    ) -> Annotated[
+        tuple[DeviationWithSessionResolved, None],
+        Responses({
+            '200': Response(Body({MEDIA_JSON: DeviationWithSessionResolved})),
+            **ERRORS,
         })
     ]:
         pass

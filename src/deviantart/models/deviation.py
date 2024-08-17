@@ -39,12 +39,38 @@ class MetadataResponse(ModelBase):
     session: ApiSession | None = None
 
 
+class DeviationPreview(ModelBase):
+    src: str
+    height: int
+    width: int
+    transparency: bool
+
+
+class DeviationContent(DeviationPreview):
+    filesize: int
+
+
+class EditorTextContentBody(ModelBase):
+    type: str
+    markup: str | None = None
+    features: str
+
+
+class EditorTextContent(ModelBase):
+    excerpt: str
+    body: EditorTextContentBody
+
+
 class DeviationWithSessionResolved(ModelBase):
     deviation_id: Annotated[UUID, pydantic.Field(alias="deviationid")]
     stats: DeviationStats | None = None
     is_mature: bool | None = None
     url: str | None = None
     published_time: dt.datetime | None = None
+    title: str | None = None
+    preview: DeviationPreview | None = None
+    content: DeviationContent | None = None
+    text_content: EditorTextContent | None = None
 
 
 class TagsResponse(ModelBase):
