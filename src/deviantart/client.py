@@ -75,7 +75,7 @@ class DeviantArt(ClientBase):
     @get('/deviation/metadata')
     async def deviation_metadata(
         self: Self,
-        deviation_ids: Annotated[list[UUID], Query('deviationids')],
+        deviation_ids: Annotated[list[UUID], Query('deviationids[]')],
         ext_stats: Annotated[bool, Query] = False,
     ) -> Annotated[
         tuple[MetadataResponse, None],
