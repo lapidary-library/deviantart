@@ -1,7 +1,7 @@
-from typing import Annotated, Self
+from typing import Annotated, Self, Unpack
 from uuid import UUID
 
-from lapidary.runtime import Body, ClientBase, Path, Query, Response, Responses, get
+from lapidary.runtime import Body, ClientArgs, ClientBase, Path, Query, Response, Responses, get
 
 from .models.deviation import DeviationWithSessionResolved, MetadataResponse, TagsResponse
 from .models.error import ErrorModel
@@ -15,14 +15,16 @@ ERRORS = {
 
 
 class DeviantArt(ClientBase):
-    def __init__(self, ):
+    def __init__(self, **httpx_kwargs: Unpack[ClientArgs]):
+        httpx_kwargs.setdefault('base_url', 'https://www.deviantart.com/api/v1/oauth2/')
+        httpx_kwargs.setdefault('timeout', 30.)
+
         super().__init__(
-            base_url='https://www.deviantart.com/api/v1/oauth2/',
-            timeout=30,
             security=(
                 {'oauth': []},
                 {'open': []},
             ),
+            **httpx_kwargs,
         )
 
     @get('/browse/tags', (

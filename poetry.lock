@@ -169,18 +169,20 @@ name = "lapidary"
 version = "0.11.0"
 description = "Python async OpenAPI client library"
 optional = false
-python-versions = "<4.0,>=3.9"
-files = [
-    {file = "lapidary-0.11.0-py3-none-any.whl", hash = "sha256:b1440fcf6b663e2495d2d014530c4ff97d1e164172448e7ad0b4fe5ace5c0a77"},
-    {file = "lapidary-0.11.0.tar.gz", hash = "sha256:7bc7192d80077719fc304604ba9b1a49aa4495a9ca589ef112c4e2a8109f1619"},
-]
+python-versions = "^3.9"
+files = []
+develop = true
 
 [package.dependencies]
-httpx = {version = ">=0.27,<0.28", extras = ["http2"]}
-httpx-auth = ">=0.22,<0.23"
-pydantic = ">=2.5.2,<3.0.0"
-python-mimeparse = ">=1.6.0,<2.0.0"
-typing-extensions = {version = ">=4.9.0,<5.0.0", markers = "python_version < \"3.12\""}
+httpx = {version = "^0.27", extras = ["http2"]}
+httpx-auth = "^0.22"
+pydantic = "^2.5.2"
+python-mimeparse = "^1.6.0"
+typing-extensions = {version = "^4.9.0", markers = "python_version < \"3.12\""}
+
+[package.source]
+type = "directory"
+url = "../lapidary/lapidary"
 
 [[package]]
 name = "pydantic"
@@ -341,4 +343,4 @@ files = [
 [metadata]
 lock-version = "2.0"
 python-versions = "^3.11"
-content-hash = "b2d849f22c7b5b3bdaec4576b101ae1e95d8fb369f24ee00d6ca8a161f9b8711"
+content-hash = "1438ca5c18a23b84593475594ac7aa2d2dc1d20f8bc97357aa8caab9e4c2b2ca"
